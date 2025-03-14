@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Glyder Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        .privacy-policy {
+            margin-top: 20px;
+            font-size: 14px;
+            color: gray;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Delete Your Glyder Account</h2>
+        <p>We're sorry to see you go. If you delete your account, all your data will be permanently removed and cannot be recovered.</p>
+        <h3>Steps to Delete Your Account:</h3>
+        <ol>
+            <li>Review our <a href="privacyPolicy.html" onclick="showPrivacyPolicy()">Privacy Policy</a> to understand how we handle your data.</li>
+            <li>Ensure you have backed up any important information.</li>
+            <li>Enter your email address below.</li>
+            <li>Click the "Request to Delete Account" button to send a deletion request.</li>
+        </ol>
+        
+        <p style="color: darkblue; font-weight: bold;">Once you submit your request, our team will review and verify it. After verification, we will send you an email with a confirmation link to complete the account deletion process.</p>
+        
+        <input type="email" id="userEmail" placeholder="Enter your email" required>
+        <button onclick="requestDeleteAccount()">Request to Delete Account</button>
+        
+        <p id="message" style="color: red; margin-top: 10px;"></p>
+        
+        <div class="privacy-policy" id="privacy-policy" style="display: none;">
+            <h3>Privacy Policy</h3>
+            <p>By deleting your account, you acknowledge that all personal data associated with your profile will be erased. This action cannot be undone.</p>
+            <p>If you need more information, contact our support team.</p>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 14px; color: gray;">After submitting your request, we will review and verify it. Once confirmed, you will receive an email with a link to finalize your account deletion.</p>
+    </div>
+
+    <script>
+        function requestDeleteAccount() {
+            let email = document.getElementById("userEmail").value;
+            if (!email) {
+                document.getElementById("message").innerText = "Please enter your email address.";
+                return;
+            }
+            
+            let mailSubject = encodeURIComponent("Request to Delete My Glyder Account");
+            let mailBody = encodeURIComponent(
+                `Dear Glyder Support Team,
+
+I hope this email finds you well. I am requesting the deletion of my Glyder account associated with the email: ${email}.
+
+Please confirm the deletion and remove all my personal data from your system.
+
+If any additional steps are required, kindly let me know.
+
+I understand that my request will be reviewed, and I will receive a confirmation email with a link to complete the account deletion process.
+
+Thank you for your support.
+
+Best regards,
+${email}`
+            );
+            
+            let mailtoLink = `mailto:info@unilawtech.com?subject=${mailSubject}&body=${mailBody}`;
+            window.location.href = mailtoLink;
+        }
+        
+        function showPrivacyPolicy() {
+            document.getElementById("privacy-policy").style.display = "block";
+        }
+    </script>
+</body>
+</html>
